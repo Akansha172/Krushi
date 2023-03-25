@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=5, initial-scale=1.0">
+    <title>krishi sahayak</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}">
+</head>
+                
+
+<body>
+    <div class="container">
+        <h1>HELP!!!</h1>
+        <div class="logo">
+            
+        </div>
+    </div>
+
+
+    <div class="box-container">
+        <div class="one">
+            <h2>voice box</h2>
+            <textarea id="speechtotext" cols="50" rows="5" placeholder="Your voice message here"></textarea>
+            <button class="button" onclick="voice()">Click to speak in English </button>
+            <button class="button" onclick="marathi()"> Click to speak in marathi</button>
+        </div>
+
+        <div class="two">
+            <h2>text box</h2>
+            <textarea id="textbox" cols="50" rows="5" placeholder=" Write Your text here"></textarea>
+            <button class="button" id="submit">Submit</button>
+        </div>
+
+        
+    </div>
+
+    <!-- <div class="three">
+        <label for="output">Answer</label>
+        <br>
+         <textarea id="freeform" name="freeform" rows="4" cols="50">
+           Output here......
+        </textarea>
+        <br> 
+    </div> -->
+
+
+
+    <script>
+        function voice() {
+            var rec_eng = new webkitSpeechRecognition();
+            rec_eng.lang = "en-GB";
+            rec_eng.onresult = function (event) {
+                console.log(event);
+                document.getElementById("speechtotext").value =
+                    event.results[0][0].transcript;
+            }
+            rec_eng.start();
+
+        }
+
+        function marathi() {
+            var rec_mar = new webkitSpeechRecognition();
+            rec_mar.lang = "mr-IN";
+            rec_mar.onresult = function (event) {
+                console.log(event);
+                document.getElementById("speechtotext").value =
+                    event.results[0][0].transcript;
+            }
+            rec_mar.start();
+
+        }
+    </script>
+    <script src="https://code.tidio.co/owilqcin8btbowrxusflxg11qzuc0cpm.js" async></script>
+</body>
+
+</html>
